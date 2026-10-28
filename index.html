@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#070b16" />
+    <title>PortScope — Port Scanner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="noise"></div>
+    <nav class="nav wrap">
+      <a class="brand" href="#top"><span class="brand-mark">P</span> PORTSCOPE</a>
+      <span class="nav-label"><i></i> SYSTEM ONLINE</span>
+    </nav>
+
+    <main id="top" class="wrap">
+      <section class="hero">
+        <div class="eyebrow"><span></span> NETWORK RECONNAISSANCE</div>
+        <h1>Know what’s<br /><em>exposed.</em></h1>
+        <p>Quickly inspect common service ports with a focused, beautiful scanner interface.</p>
+      </section>
+
+      <section class="scanner-card" aria-label="Port scanning controls">
+        <div class="card-topline"><span>SCAN CONFIGURATION</span><span class="mono">v1.0.0</span></div>
+        <div class="form-grid">
+          <label class="field target-field">Target host or IP
+            <input id="target" type="text" placeholder="e.g. example.com or 192.168.1.1" autocomplete="off" />
+          </label>
+          <label class="field">Port profile
+            <select id="profile">
+              <option value="quick">Quick scan · 8 ports</option>
+              <option value="web">Web services · 6 ports</option>
+              <option value="full">Extended · 14 ports</option>
+            </select>
+          </label>
+          <button id="scanBtn" class="scan-button"><span class="scan-icon">⌁</span> Start scan</button>
+        </div>
+        <p class="consent">By scanning, you confirm you own the target or have explicit authorization to test it.</p>
+      </section>
+
+      <section id="results" class="results" aria-live="polite">
+        <div class="results-header">
+          <div><span class="section-kicker">SCAN RESULTS</span><h2 id="resultTitle">Waiting for target</h2></div>
+          <div id="scanStatus" class="status idle">IDLE</div>
+        </div>
+        <div id="emptyState" class="empty-state">
+          <div class="radar"><span></span><span></span><b></b></div>
+          <p>Enter a host above to start an authorized scan.</p>
+        </div>
+        <div id="resultsContent" hidden>
+          <div class="summary">
+            <div><span>HOST</span><strong id="hostValue">—</strong></div>
+            <div><span>OPEN</span><strong id="openCount">0</strong></div>
+            <div><span>CHECKED</span><strong id="checkedCount">0</strong></div>
+            <div><span>ELAPSED</span><strong id="elapsed">0.0s</strong></div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>PORT</th><th>SERVICE</th><th>PROTOCOL</th><th>STATE</th></tr></thead>
+              <tbody id="portRows"></tbody>
+            </table>
+          </div>
+          <p class="demo-note">Demo mode: browser-only deployments cannot establish arbitrary TCP connections. Connect this UI to an authorized server-side scanner for live results.</p>
+        </div>
+      </section>
+    </main>
+    <footer class="wrap"><span>PORTSCOPE / 2026</span><span>BUILT FOR RESPONSIBLE TESTING</span></footer>
+    <script src="app.js"></script>
+  </body>
+</html>
